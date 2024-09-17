@@ -465,11 +465,11 @@
 
                 <div class="dropdown">
 
-                    <a href="/Dashboard.html">Dashboard</a>
+                    <a href="Dashboard.html">Dashboard</a>
 
-                    <a href="/Profile.html">Profile</a>
+                    <a href="Profile.html">Profile</a>
 
-                    <a href="/Setting.html">Settings</a>
+                    <a href="Setting.html">Settings</a>
 
                 </div>
 
@@ -483,31 +483,31 @@
 
                   <a href="Calculater.html">Calculator</a>
 
-                    <a href="/Unit count.html" onclick="openUnitConverter()">Unit Converter</a>
+                    <a href="Unit count.html" onclick="openUnitConverter()">Unit Converter</a>
 
-                    <a href="/QR code.html" onclick="openQRCodeGenerator()">QR Code Generator</a>
+                    <a href="QR code.html" onclick="openQRCodeGenerator()">QR Code Generator</a>
 
-                    <a href="/Texteditor.html" onclick="openTextEditor()">Text Editor</a>
+                    <a href="Texteditor.html" onclick="openTextEditor()">Text Editor</a>
 
-                    <a href="/Medical.html">Medicine Expiry Date</a>
+                    <a href="Medical.html">Medicine Expiry Date</a>
 
-                    <a href="/typeimage.html">Image Format Converter</a>
+                    <a href="typeimage.html">Image Format Converter</a>
 
-                    <a href="/Any pdf.html">File to PDF Converter</a>
+                    <a href="Any pdf.html">File to PDF Converter</a>
 
-                    <a href="/Text to speak.html">Text-to-Speech</a>
+                    <a href="Text to speak.html">Text-to-Speech</a>
 
-                    <a href="/Tras.html">Language Translator</a>
+                    <a href="Tras.html">Language Translator</a>
 
-                    <a href="/Videoextract.html">Video Audio Extractor and Modifier</a>
+                    <a href="Videoextract.html">Video Audio Extractor and Modifier</a>
 
-                    <a href="/Videoto mp3.html">Video to MP3 Converter</a>
+                    <a href="Videoto mp3.html">Video to MP3 Converter</a>
 
-                    <a href="/Gghtml.html">Simple HTML Code Editor</a>
+                    <a href="Gghtml.html">Simple HTML Code Editor</a>
 
-                    <a href="/birth.html">Colorful Age Calculator</a>
+                    <a href="birth.html">Colorful Age Calculator</a>
 
-                    <a href="/color.html">Color Shade Generator</a>
+                    <a href="color.html">Color Shade Generator</a>
 
                 </div>
 
@@ -622,16 +622,12 @@
     </section>
 
     <!-- Wallpaper Section -->
-
     <section id="wallpapers">
+<div class="search-container">
+    <input id="wallpaper-search-bar" type="text" placeholder="Search wallpapers...">
+    <button id="wallpaper-search-button" onclick="searchWallpapers()">Search</button>
+</div>
 
-        <div class="search-container">
-
-            <input id="wallpaper-search-bar" type="text" placeholder="Search wallpapers...">
-
-            <button id="wallpaper-search-button" onclick="searchWallpapers()">Search</button>
-
-        </div>
 
         <h2>Popular Wallpapers</h2>
 
@@ -777,10 +773,10 @@
         }
 
         function searchWallpapers() {
-
-            const query = document.getElementById("wallpaper-search-bar").value;
-
-            alert("Searching wallpapers for: " + query);
+        var query = document.getElementById("wallpaper-search-bar").value;
+        // Redirect to Google Images search with the user's query
+        var googleSearchUrl = "https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(query) + "+wallpapers";
+        window.open(googleSearchUrl, "_blank"); // Open Google search in a new tab
 
             // Implement actual wallpaper search functionality here
 
