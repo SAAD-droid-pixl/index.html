@@ -754,14 +754,9 @@
         <p>&copy; 2024 All-in-One Made by SAAD. All Rights Reserved.</p>
 
     </footer>
-     !-- Live Chat Widget -->
+  <!-- Live Chat Widget -->
 
-    <div class="live-chat-widget" onclick="openChat()">Chat with GPT</div>
-    
-  <!-- The iframe for ChatGPT will appear below the chat widget -->
-    <div id="chatgpt-container" style="display:none;">
-        <iframe id="chatgpt-iframe" src="https://chat.openai.com/" width="100%" height="500px"></iframe>
-    </div>
+    <div class="live-chat-widget" onclick="openChat()"></div>
 
     <script>
 
@@ -819,14 +814,12 @@
 
         }
 
-    function openChat() {
-            // Toggle the visibility of the chatgpt-container
-            var chatContainer = document.getElementById("chatgpt-container");
-            if (chatContainer.style.display === "none") {
-                chatContainer.style.display = "block";
-            } else {
-                chatContainer.style.display = "none";
-            }
+      function openChat() {
+
+            alert("Opening live chat support...");
+
+            // Implement actual chat functionality here
+
         }
 
 
