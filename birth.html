@@ -1,0 +1,107 @@
+<html><head><base href="https://web-components.com">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colorful Age Calculator: Zip Zok Prosese</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffecd2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  .container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+  }
+  h1 {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+  }
+  input, button {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  button {
+    background-color: #4ecdc4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #45b7aa;
+  }
+  #result {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #6c5ce7;
+  }
+  .zip-zok {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0;
+    pointer-events: none;
+  }
+  @keyframes zipZok {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Colorful Age Calculator: Zip Zok Prosese</h1>
+    <input type="date" id="birthdate" required>
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateAge() {
+      const birthDate = new Date(document.getElementById('birthdate').value);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      
+      const result = document.getElementById('result');
+      result.textContent = `Your age is ${age} years old!`;
+      
+      // Zip Zok Prosese animation
+      for (let i = 0; i < 20; i++) {
+        const zipZok = document.createElement('div');
+        zipZok.className = 'zip-zok';
+        zipZok.textContent = Math.random() < 0.5 ? 'Zip' : 'Zok';
+        zipZok.style.left = `${Math.random() * 100}vw`;
+        zipZok.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        zipZok.style.animation = `zipZok ${1 + Math.random() * 2}s linear`;
+        document.body.appendChild(zipZok);
+        
+        setTimeout(() => {
+          document.body.removeChild(zipZok);
+        }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>

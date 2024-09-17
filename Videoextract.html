@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Video Audio Extractor and Modifier</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f4;
+
+            padding: 20px;
+
+        }
+
+        .container {
+
+            max-width: 600px;
+
+            margin: auto;
+
+            padding: 20px;
+
+            background: white;
+
+            border-radius: 8px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        input[type="file"], button, select {
+
+            margin: 10px 0;
+
+            padding: 10px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+            width: 100%;
+
+        }
+
+        button {
+
+            background: #dc3545;
+
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background: #c82333;
+
+        }
+
+        #status {
+
+            margin-top: 10px;
+
+            padding: 10px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 5px;
+
+            background: #f9f9f9;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Video Audio Extractor and Modifier</h1>
+
+        <input type="file" id="video-file" accept="video/*">
+
+        <input type="file" id="audio-file" accept="audio/*" placeholder="Upload audio file to replace">
+
+        <select id="audio-action">
+
+            <option value="extract">Extract Audio</option>
+
+            <option value="replace">Replace Audio</option>
+
+        </select>
+
+        <button onclick="processAudio()">Process Audio</button>
+
+        <div id="status"></div>
+
+    </div>
+
+    <script>
+
+        function processAudio() {
+
+            const videoInput = document.getElementById('video-file');
+
+            const audioInput = document.getElementById('audio-file');
+
+            const action = document.getElementById('audio-action').value;
+
+            const status = document.getElementById('status');
+
+            const videoFile = videoInput.files[0];
+
+            const audioFile = audioInput.files[0];
+
+            if (videoFile) {
+
+                status.textContent = 'Processing... (Server-side processing required)';
+
+                
+
+                // Implement server-side code to handle audio extraction or replacement
+
+                setTimeout(() => {
+
+                    if (action === 'extract') {
+
+                        status.textContent = 'Audio extracted from video successfully! (Server-side processing needed)';
+
+                    } else if (action === 'replace' && audioFile) {
+
+                        status.textContent = 'Audio replaced in video successfully! (Server-side processing needed)';
+
+                    } else {
+
+                        status.textContent = 'Audio file is required for replacement.';
+
+                    }
+
+                }, 3000);
+
+            } else {
+
+                status.textContent = 'Please select a video file.';
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

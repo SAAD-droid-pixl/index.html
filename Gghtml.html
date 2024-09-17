@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Code Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        #editor {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            background-color: #282c34;
+            color: #ffffff;
+            overflow: auto;
+        }
+        #output {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            background-color: #ffffff;
+            overflow: auto;
+        }
+        .highlight {
+            color: #d19a66; /* Orange */
+        }
+        .tag {
+            color: #569cd6; /* Light Blue */
+        }
+        .attribute {
+            color: #9cdcfe; /* Light Cyan */
+        }
+        .value {
+            color: #ce9178; /* Light Red */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simple HTML Code Editor</h1>
+    <textarea id="editor" placeholder="Write your HTML code here..."></textarea>
+    <div id="output"></div>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const output = document.getElementById('output');
+
+        editor.addEventListener('input', updateOutput);
+
+        function updateOutput() {
+            const html = editor.value;
+            output.innerHTML = html;
+            highlightSyntax(html);
+        }
+
+        function highlightSyntax(html) {
+            const highlighted = html
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/(<!--[\s\S]*?-->)/g, `<span class="highlight">$1</span>`)
+                .replace(/(&lt;\/?)(\w+)(.*?&gt;)/g, `$1<span class="tag">$2</span>$3`)
+                .replace(/(\w+)=(["'])(.*?)\2/g, `<span class="attribute">$1</span>=<span class="value">$2$3$2</span>`);
+            editor.innerHTML = highlighted;
+        }
+    </script>
+
+</body>
+</html>

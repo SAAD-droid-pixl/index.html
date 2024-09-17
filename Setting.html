@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings</title>
+
+    <style>
+
+        body {
+
+            font-family: 'Poppins', sans-serif;
+
+            background: #f4f4f4;
+
+            color: #333;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+        header {
+
+            background: #333;
+
+            color: #fff;
+
+            padding: 15px;
+
+            text-align: center;
+
+        }
+
+        .container {
+
+            max-width: 800px;
+
+            margin: 20px auto;
+
+            padding: 20px;
+
+            background: #fff;
+
+            border-radius: 10px;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .section {
+
+            margin-bottom: 20px;
+
+        }
+
+        .section h2 {
+
+            margin-bottom: 15px;
+
+        }
+
+        .section label {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-weight: bold;
+
+        }
+
+        .section input, .section select {
+
+            width: 100%;
+
+            padding: 10px;
+
+            margin-bottom: 10px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 5px;
+
+        }
+
+        .button {
+
+            display: inline-block;
+
+            padding: 10px 20px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background: #007bff;
+
+            color: #fff;
+
+            text-decoration: none;
+
+            transition: background 0.3s;
+
+        }
+
+        .button:hover {
+
+            background: #0056b3;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Settings</h1>
+
+    </header>
+
+    <div class="container">
+
+        <!-- General Settings -->
+
+        <div class="section">
+
+            <h2>General Settings</h2>
+
+            <label for="site-title">Site Title</label>
+
+            <input type="text" id="site-title" placeholder="Enter site title">
+
+            
+
+            <label for="site-description">Site Description</label>
+
+            <input type="text" id="site-description" placeholder="Enter site description">
+
+            
+
+            <a href="#" class="button">Save Settings</a>
+
+        </div>
+
+        
+
+        <!-- Theme Settings -->
+
+        <div class="section">
+
+            <h2>Theme Settings</h2>
+
+            <label for="theme">Choose Theme</label>
+
+            <select id="theme">
+
+                <option value="light">Light</option>
+
+                <option value="dark">Dark</option>
+
+                <option value="custom">Custom</option>
+
+            </select>
+
+            <label for="background-color">Background Color</label>
+
+            <input type="color" id="background-color" value="#ffffff">
+
+            <label for="text-color">Text Color</label>
+
+            <input type="color" id="text-color" value="#000000">
+
+            <a href="#" class="button">Apply Theme</a>
+
+        </div>
+
+        <!-- Account Settings -->
+
+        <div class="section">
+
+            <h2>Account Settings</h2>
+
+            <label for="username">Username</label>
+
+            <input type="text" id="username" placeholder="Enter your username">
+
+            <label for="email">Email</label>
+
+            <input type="email" id="email" placeholder="Enter your email">
+
+            <label for="password">New Password</label>
+
+            <input type="password" id="password" placeholder="Enter new password">
+
+            <label for="confirm-password">Confirm Password</label>
+
+            <input type="password" id="confirm-password" placeholder="Confirm new password">
+
+            <a href="#" class="button">Update Account</a>
+
+        </div>
+
+        <!-- Notification Settings -->
+
+        <div class="section">
+
+            <h2>Notification Settings</h2>
+
+            <label for="email-notifications">Email Notifications</label>
+
+            <select id="email-notifications">
+
+                <option value="all">All</option>
+
+                <option value="important">Important Only</option>
+
+                <option value="none">None</option>
+
+            </select>
+
+            <label for="sms-notifications">SMS Notifications</label>
+
+            <select id="sms-notifications">
+
+                <option value="all">All</option>
+
+                <option value="important">Important Only</option>
+
+                <option value="none">None</option>
+
+            </select>
+
+            <a href="#" class="button">Save Notification Settings</a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

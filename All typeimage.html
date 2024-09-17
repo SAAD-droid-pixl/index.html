@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image Format Converter</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f4;
+
+            padding: 20px;
+
+        }
+
+        .container {
+
+            max-width: 600px;
+
+            margin: auto;
+
+            padding: 20px;
+
+            background: white;
+
+            border-radius: 8px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        input[type="file"], select, button {
+
+            margin: 10px 0;
+
+            padding: 10px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+            width: 100%;
+
+        }
+
+        button {
+
+            background: #4CAF50;
+
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background: #45a049;
+
+        }
+
+        #status {
+
+            margin-top: 10px;
+
+            padding: 10px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 5px;
+
+            background: #f9f9f9;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Image Format Converter</h1>
+
+        <input type="file" id="image-file" accept="image/*">
+
+        <select id="format">
+
+            <option value="jpeg">JPEG</option>
+
+            <option value="png">PNG</option>
+
+            <option value="gif">GIF</option>
+
+            <option value="bmp">BMP</option>
+
+            <option value="webp">WEBP</option>
+
+        </select>
+
+        <button onclick="convertImage()">Convert Image</button>
+
+        <div id="status"></div>
+
+    </div>
+
+    <script>
+
+        function convertImage() {
+
+            const fileInput = document.getElementById('image-file');
+
+            const format = document.getElementById('format').value;
+
+            const status = document.getElementById('status');
+
+            const file = fileInput.files[0];
+
+            
+
+            if (file) {
+
+                status.textContent = 'Converting... (Server-side processing required)';
+
+                // Implement server-side code to handle image conversion
+
+                setTimeout(() => {
+
+                    status.textContent = 'Image converted successfully! (Server-side processing needed)';
+
+                }, 3000);
+
+            } else {
+
+                status.textContent = 'Please select an image file.';
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

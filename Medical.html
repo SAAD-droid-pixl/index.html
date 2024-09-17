@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicine Expiry Date Management</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f5f5f5;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            margin: 0;
+
+        }
+
+        .container {
+
+            background: #fff;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            width: 80%;
+
+            max-width: 800px;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-bottom: 20px;
+
+        }
+
+        th, td {
+
+            padding: 10px;
+
+            border: 1px solid #ddd;
+
+            text-align: left;
+
+        }
+
+        th {
+
+            background-color: #f4f4f4;
+
+        }
+
+        input, button {
+
+            padding: 10px;
+
+            margin: 5px 0;
+
+            border: 1px solid #ddd;
+
+            border-radius: 4px;
+
+        }
+
+        button {
+
+            background-color: #ff4b2b;
+
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background-color: #ff416c;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Medicine Expiry Date Management</h1>
+
+        <form id="medicine-form">
+
+            <input type="text" id="medicine-name" placeholder="Medicine Name" required>
+
+            <input type="date" id="expiry-date" required>
+
+            <button type="submit">Add Medicine</button>
+
+        </form>
+
+        <h2>Medicine List</h2>
+
+        <table id="medicine-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Expiry Date</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <!-- Data will be inserted here -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script>
+
+        document.getElementById('medicine-form').addEventListener('submit', function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById('medicine-name').value;
+
+            const expiryDate = document.getElementById('expiry-date').value;
+
+            const table = document.getElementById('medicine-table').getElementsByTagName('tbody')[0];
+
+            const row = table.insertRow();
+
+            row.insertCell(0).innerText = name;
+
+            row.insertCell(1).innerText = expiryDate;
+
+            document.getElementById('medicine-form').reset();
+
+            checkExpiries();
+
+        });
+
+        function checkExpiries() {
+
+            const rows = document.getElementById('medicine-table').getElementsByTagName('tbody')[0].rows;
+
+            const today = new Date();
+
+            for (let i = 0; i < rows.length; i++) {
+
+                const expiryDate = new Date(rows[i].cells[1].innerText);
+
+                if (expiryDate < today) {
+
+                    rows[i].style.backgroundColor = '#ffdddd'; // Highlight expired items
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Unit Converter</title>
+
+    <style>
+
+        body {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            background-color: #2c3e50;
+
+            color: #fff;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        .converter {
+
+            background: #34495e;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+            width: 300px;
+
+        }
+
+        .converter select, .converter input {
+
+            width: calc(100% - 22px);
+
+            padding: 10px;
+
+            margin-bottom: 10px;
+
+            border-radius: 5px;
+
+            border: none;
+
+        }
+
+        .button {
+
+            background: #16a085;
+
+            border: none;
+
+            color: white;
+
+            font-size: 18px;
+
+            padding: 15px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s;
+
+        }
+
+        .button:hover {
+
+            background: #1abc9c;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="converter">
+
+        <h2>Unit Converter</h2>
+
+        <input id="amount" type="number" placeholder="Amount">
+
+        <select id="from-unit">
+
+            <option value="meters">Meters</option>
+
+            <option value="kilometers">Kilometers</option>
+
+            <option value="miles">Miles</option>
+
+            <option value="feet">Feet</option>
+
+        </select>
+
+        <select id="to-unit">
+
+            <option value="meters">Meters</option>
+
+            <option value="kilometers">Kilometers</option>
+
+            <option value="miles">Miles</option>
+
+            <option value="feet">Feet</option>
+
+        </select>
+
+        <button class="button" onclick="convert()">Convert</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        function convert() {
+
+            const amount = parseFloat(document.getElementById('amount').value);
+
+            const fromUnit = document.getElementById('from-unit').value;
+
+            const toUnit = document.getElementById('to-unit').value;
+
+            let result;
+
+            if (fromUnit === toUnit) {
+
+                result = amount;
+
+            } else {
+
+                const conversionRates = {
+
+                    meters: { kilometers: 0.001, miles: 0.000621371, feet: 3.28084 },
+
+                    kilometers: { meters: 1000, miles: 0.621371, feet: 3280.84 },
+
+                    miles: { meters: 1609.34, kilometers: 1.60934, feet: 5280 },
+
+                    feet: { meters: 0.3048, kilometers: 0.0003048, miles: 0.000189394 }
+
+                };
+
+                result = amount * conversionRates[fromUnit][toUnit];
+
+            }
+
+            document.getElementById('result').innerText = `Result: ${result.toFixed(2)} ${toUnit}`;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
