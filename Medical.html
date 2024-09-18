@@ -102,6 +102,30 @@
 
         }
 
+        .delete-btn {
+
+            background-color: #d9534f;
+
+        }
+
+        .delete-btn:hover {
+
+            background-color: #c9302c;
+
+        }
+
+        .expired {
+
+            background-color: #ffdddd; /* लाल रंग (रेड) */
+
+        }
+
+        .valid {
+
+            background-color: #ddffdd; /* हरा रंग (ग्रीन) */
+
+        }
+
     </style>
 
 </head>
@@ -134,6 +158,8 @@
 
                     <th>Expiry Date</th>
 
+                    <th>Action</th>
+
                 </tr>
 
             </thead>
@@ -150,6 +176,12 @@
 
     <script>
 
+        document.addEventListener('DOMContentLoaded', function() {
+
+            loadMedicineData();
+
+        });
+
         document.getElementById('medicine-form').addEventListener('submit', function(event) {
 
             event.preventDefault();
@@ -158,37 +190,87 @@
 
             const expiryDate = document.getElementById('expiry-date').value;
 
-            const table = document.getElementById('medicine-table').getElementsByTagName('tbody')[0];
-
-            const row = table.insertRow();
-
-            row.insertCell(0).innerText = name;
-
-            row.insertCell(1).innerText = expiryDate;
+            addMedicine(name, expiryDate);
 
             document.getElementById('medicine-form').reset();
 
-            checkExpiries();
-
         });
 
-        function checkExpiries() {
+        function addMedicine(name, expiryDate) {
 
-            const rows = document.getElementById('medicine-table').getElementsByTagName('tbody')[0].rows;
+            const medicineData = JSON.parse(localStorage.getItem('medicines')) || [];
 
-            const today = new Date();
+            medicineData.push({ id: Date.now(), name, expiryDate });
 
-            for (let i = 0; i < rows.length; i++) {
+            localStorage.setItem('medicines', JSON.stringify(medicineData));
 
-                const expiryDate = new Date(rows[i].cells[1].innerText);
+            loadMedicineData();
+
+        }
+
+        function loadMedicineData() {
+
+            const table = document.getElementById('medicine-table').getElementsByTagName('tbody')[0];
+
+            table.innerHTML = '';
+
+            const medicineData = JSON.parse(localStorage.getItem('medicines')) || [];
+
+            medicineData.forEach(medicine => {
+
+                const row = table.insertRow();
+
+                row.insertCell(0).innerText = medicine.name;
+
+                row.insertCell(1).innerText = medicine.expiryDate;
+
+                const deleteCell = row.insertCell(2);
+
+                const deleteButton = document.createElement('button');
+
+                deleteButton.innerText = 'Delete';
+
+                deleteButton.classList.add('delete-btn');
+
+                deleteButton.setAttribute('data-id', medicine.id);
+
+                deleteButton.addEventListener('click', function() {
+
+                    deleteMedicine(medicine.id);
+
+                });
+
+                deleteCell.appendChild(deleteButton);
+
+                // Expiry date check for color coding
+
+                const today = new Date();
+
+                const expiryDate = new Date(medicine.expiryDate);
 
                 if (expiryDate < today) {
 
-                    rows[i].style.backgroundColor = '#ffdddd'; // Highlight expired items
+                    row.classList.add('expired'); // लाल रंग (रेड) अगर एक्सपायर हो गई
+
+                } else {
+
+                    row.classList.add('valid'); // हरा रंग (ग्रीन) अगर अभी वैध है
 
                 }
 
-            }
+            });
+
+        }
+
+        function deleteMedicine(id) {
+
+            let medicineData = JSON.parse(localStorage.getItem('medicines')) || [];
+
+            medicineData = medicineData.filter(medicine => medicine.id !== id);
+
+            localStorage.setItem('medicines', JSON.stringify(medicineData));
+
+            loadMedicineData();
 
         }
 
