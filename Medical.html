@@ -16,7 +16,7 @@
 
             font-family: Arial, sans-serif;
 
-            background-color: #f5f5f5;
+            background-color: #e0f7fa;
 
             display: flex;
 
@@ -32,17 +32,72 @@
 
         .container {
 
-            background: #fff;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
 
             padding: 20px;
 
+            border-radius: 16px;
+
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+            width: 90%;
+
+            max-width: 1000px;
+
+            color: white;
+
+            box-sizing: border-box;
+
+        }
+
+        h1, h2 {
+
+            text-align: center;
+
+        }
+
+        form {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+        }
+
+        input, button {
+
+            padding: 12px;
+
+            margin: 10px;
+
+            border: none;
+
             border-radius: 8px;
 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 1em;
 
-            width: 80%;
+            width: 100%;
 
-            max-width: 800px;
+            max-width: 300px;
+            box-shadow: 10px 10px 10px rgba(0,0,0,5.5);
+
+        }
+
+        button {
+
+            background-color: #ff4b2b;
+
+            color: white;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background-color: #ff416c;
 
         }
 
@@ -58,47 +113,41 @@
 
         th, td {
 
-            padding: 10px;
-
-            border: 1px solid #ddd;
+            padding: 12px;
 
             text-align: left;
+
+            color: #333;
+
+            border: 1px solid #ddd;
 
         }
 
         th {
 
-            background-color: #f4f4f4;
-
-        }
-
-        input, button {
-
-            padding: 10px;
-
-            margin: 5px 0;
-
-            border: 1px solid #ddd;
-
-            border-radius: 4px;
-
-        }
-
-        button {
-
-            background-color: #ff4b2b;
+            background-color: #2193b0;
 
             color: white;
 
-            border: none;
+        }
 
-            cursor: pointer;
+        td {
+
+            background-color: white;
 
         }
 
-        button:hover {
+        .delete-btn, .edit-btn {
 
-            background-color: #ff416c;
+            padding: 6px 12px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            color: white;
 
         }
 
@@ -114,15 +163,68 @@
 
         }
 
+        .edit-btn {
+
+            background-color: #5bc0de;
+
+        }
+
+        .edit-btn:hover {
+
+            background-color: #31b0d5;
+
+        }
+
         .expired {
 
-            background-color: #ffdddd; /* लाल रंग (रेड) */
+            background-color: #ffdddd;
 
         }
 
         .valid {
 
-            background-color: #ddffdd; /* हरा रंग (ग्रीन) */
+            background-color: #ddffdd;
+
+        }
+
+        /* Responsive Design for Mobile */
+
+        @media (max-width: 768px) {
+
+            body {
+
+                flex-direction: column;
+
+                height: auto;
+
+                padding: 20px;
+
+            }
+
+            
+
+            .container {
+
+                width: 100%;
+
+                padding: 15px;
+
+                box-sizing: border-box;
+                box-shadow: 10px 10px 10px rgba(0,0,0,5.5);
+
+            }
+
+            input, button {
+
+                width: 93%;
+
+            }
+
+        }
+
+        #medicine-table {
+
+            display: none; /* Initially hide the table */
 
         }
 
@@ -146,31 +248,38 @@
 
         </form>
 
-        <h2>Medicine List</h2>
+        <button id="toggle-btn">Show Medicine List</button> <!-- Toggle Button -->
 
-        <table id="medicine-table">
+        <div id="medicine-list-section">
 
-            <thead>
+            <h2>Medicine List</h2>
 
-                <tr>
+            <table id="medicine-table">
 
-                    <th>Name</th>
+                <thead>
 
-                    <th>Expiry Date</th>
+                    <tr>
 
-                    <th>Action</th>
+                        <th>Name</th>
 
-                </tr>
+                        <th>Expiry Date</th>
 
-            </thead>
+                        <th>Action</th>
 
-            <tbody>
+                    </tr>
 
-                <!-- Data will be inserted here -->
+                </thead>
 
-            </tbody>
+                <tbody>
 
-        </table>
+                    <!-- Data will be inserted here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+        <p>made in Mr.SAAD</p>
 
     </div>
 
@@ -193,6 +302,30 @@
             addMedicine(name, expiryDate);
 
             document.getElementById('medicine-form').reset();
+
+        });
+
+        // Toggle Button Functionality
+
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        const medicineTable = document.getElementById('medicine-table');
+
+        toggleBtn.addEventListener('click', function() {
+
+            if (medicineTable.style.display === "none") {
+
+                medicineTable.style.display = "table"; // Show the table
+
+                toggleBtn.innerText = "Hide Medicine List";
+
+            } else {
+
+                medicineTable.style.display = "none"; // Hide the table
+
+                toggleBtn.innerText = "Show Medicine List";
+
+            }
 
         });
 
@@ -224,7 +357,7 @@
 
                 row.insertCell(1).innerText = medicine.expiryDate;
 
-                const deleteCell = row.insertCell(2);
+                const actionCell = row.insertCell(2);
 
                 const deleteButton = document.createElement('button');
 
@@ -240,9 +373,23 @@
 
                 });
 
-                deleteCell.appendChild(deleteButton);
+                const editButton = document.createElement('button');
 
-                // Expiry date check for color coding
+                editButton.innerText = 'Edit';
+
+                editButton.classList.add('edit-btn');
+
+                editButton.setAttribute('data-id', medicine.id);
+
+                editButton.addEventListener('click', function() {
+
+                    editMedicine(medicine.id);
+
+                });
+
+                actionCell.appendChild(editButton);
+
+                actionCell.appendChild(deleteButton);
 
                 const today = new Date();
 
@@ -250,11 +397,11 @@
 
                 if (expiryDate < today) {
 
-                    row.classList.add('expired'); // लाल रंग (रेड) अगर एक्सपायर हो गई
+                    row.classList.add('expired');
 
                 } else {
 
-                    row.classList.add('valid'); // हरा रंग (ग्रीन) अगर अभी वैध है
+                    row.classList.add('valid');
 
                 }
 
@@ -271,6 +418,20 @@
             localStorage.setItem('medicines', JSON.stringify(medicineData));
 
             loadMedicineData();
+
+        }
+
+        function editMedicine(id) {
+
+            const medicineData = JSON.parse(localStorage.getItem('medicines')) || [];
+
+            const medicine = medicineData.find(m => m.id === id);
+
+            document.getElementById('medicine-name').value = medicine.name;
+
+            document.getElementById('expiry-date').value = medicine.expiryDate;
+
+            deleteMedicine(id); // Remove the old entry to edit
 
         }
 
