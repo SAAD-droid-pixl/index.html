@@ -1,77 +1,432 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Code Editor</title>
+
+    <title>Plywood Furniture Estimate</title>
+
     <style>
+
         body {
+
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+
+            padding: 20px;
+
         }
-        #editor {
+
+        .container {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+        }
+
+        select, input, button {
+
             width: 100%;
-            height: 300px;
-            border: 1px solid #ccc;
+
             padding: 10px;
-            font-family: monospace;
-            background-color: #282c34;
-            color: #ffffff;
-            overflow: auto;
-        }
-        #output {
-            width: 100%;
-            height: 300px;
+
+            margin: 10px 0;
+
+            border-radius: 5px;
+
             border: 1px solid #ccc;
+
+            font-size: 16px;
+
+        }
+
+        .result, .data-table {
+
+            margin-top: 20px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
             margin-top: 10px;
-            background-color: #ffffff;
-            overflow: auto;
+
         }
-        .highlight {
-            color: #d19a66; /* Orange */
+
+        table, th, td {
+
+            border: 1px solid #ccc;
+
+            padding: 10px;
+
+            text-align: center;
+
         }
-        .tag {
-            color: #569cd6; /* Light Blue */
+
+        .toggle-container {
+
+            margin-top: 20px;
+
+            display: none;
+
         }
-        .attribute {
-            color: #9cdcfe; /* Light Cyan */
+
+        .toggle-container.active {
+
+            display: block;
+
         }
-        .value {
-            color: #ce9178; /* Light Red */
+
+        .toggle-button {
+
+            background-color: #007bff;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px;
+
+            margin: 10px 0;
+
+            cursor: pointer;
+
+            width: 100%;
+
         }
+
+        @media print {
+
+            body * {
+
+                visibility: hidden;
+
+            }
+
+            #printTable, #printTable * {
+
+                visibility: visible;
+
+            }
+
+            #printTable {
+
+                position: absolute;
+
+                left: 0;
+
+                top: 0;
+
+                width: 100%;
+
+            }
+
+            p{
+                text-align center   
+            }
+
+        }
+
     </style>
+
 </head>
+
 <body>
 
-    <h1>Simple HTML Code Editor</h1>
-    <textarea id="editor" placeholder="Write your HTML code here..."></textarea>
-    <div id="output"></div>
+<div class="container">
 
-    <script>
-        const editor = document.getElementById('editor');
-        const output = document.getElementById('output');
+    <h2>Unified Price Calculator</h2>
 
-        editor.addEventListener('input', updateOutput);
+    <h3>Sheet Price Calculator</h3>
 
-        function updateOutput() {
-            const html = editor.value;
-            output.innerHTML = html;
-            highlightSyntax(html);
+    <label for="thickness">Select Sheet Thickness:</label>
+
+    <select id="thickness">
+
+        <option value="25">25 mm</option>
+
+        <option value="18">18 mm</option>
+
+        <option value="12">12 mm</option>
+
+        <option value="8">8 mm</option>
+
+        <option value="6">6 mm</option>
+
+    </select>
+
+    <label for="sheetSquareFeet">Enter Square Feet:</label>
+
+    <input type="number" id="sheetSquareFeet" placeholder="Enter total square feet">
+
+    <button onclick="calculateSheetAmount()">Calculate Sheet Price</button>
+
+    <h3>Unit Price Calculator</h3>
+
+    <label for="item">Select Item:</label>
+
+    <select id="item">
+
+        <option value="30">Magnet</option>
+
+        <option value="20">Table Chin</option>
+
+        <option value="120">Cilicon</option>
+
+        <option value="30">Abroad Tape</option>
+
+        <option value="300">Lock</option>
+
+        <option value="40">Blade</option>
+
+        <option value="10">L Socket</option>
+
+        <option value="500">Inner Mica</option>
+
+        <option value="400">Channel</option>
+
+    </select>
+
+    <label for="units">Enter Units:</label>
+
+    <input type="number" id="units" min="1" required>
+
+    <button onclick="calculateUnitAmount()">Calculate Unit Price</button>
+
+    <h3>KG Price Calculator</h3>
+
+    <label for="kgItem">Select Item:</label>
+
+    <select id="kgItem">
+
+        <option value="hitex">Hitex</option>
+
+        <option value="screw">Screw</option>
+
+        <option value="khille">Khille</option>
+
+        <option value="aluminumBottom">Aluminum Bottom</option>
+
+        <option value="fevicol">Fevicol</option>
+
+    </select>
+
+    <label for="kg">Enter KG:</label>
+
+    <input type="number" id="kg" placeholder="Enter kilograms" min="1">
+
+    <button onclick="calculateKgPrice()">Calculate KG Price</button>
+
+    <div class="result" id="result"></div>
+
+    <button id="printButton" onclick="printTable()">Print Results</button>
+
+    <button id="clearButton" onclick="clearTable()">Clear Results</button>
+
+    <div class="toggle-container" id="toggleMore">
+
+        <h3>Estimates</h3>
+
+        <table id="dataTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>Type</th>
+
+                    <th>Details</th>
+
+                    <th>Total Amount (Rs.)</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tableBody">
+
+                <!-- Data will be inserted here dynamically -->
+
+            </tbody>
+
+        </table>
+
+        <h3 id="grandTotal" style="margin-top: 20px;">Grand Total: Rs. 0.00</h3>
+
+    </div>
+    <p> Made by Mr.saad</p>
+
+</div>
+
+<script>
+
+    let grandTotal = 0; // Variable to hold grand total amount
+
+    function calculateSheetAmount() {
+
+        const thickness = document.getElementById('thickness').value;
+
+        const squareFeet = document.getElementById('sheetSquareFeet').value;
+
+        const pricePerSquareFoot = { 25: 90, 18: 70, 12: 55, 8: 45, 6: 42 };
+
+        const extraPercentage = 35 / 100; // 35% extra
+
+        const sheetSize = 32; // 32 square feet per sheet
+
+        if (squareFeet && squareFeet > 0) {
+
+            const price = pricePerSquareFoot[thickness];
+
+            const sheets = squareFeet / sheetSize;
+
+            const baseAmount = squareFeet * price;
+
+            const finalAmount = baseAmount + (baseAmount * extraPercentage);
+
+            addToTable('Sheet Price', `Thickness: ${thickness} mm, Square Feet: ${squareFeet} sq ft, Sheets: ${sheets.toFixed(2)}`, finalAmount.toFixed(2));
+
+        } else {
+
+            alert('Please enter a valid square feet amount');
+
         }
 
-        function highlightSyntax(html) {
-            const highlighted = html
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/(<!--[\s\S]*?-->)/g, `<span class="highlight">$1</span>`)
-                .replace(/(&lt;\/?)(\w+)(.*?&gt;)/g, `$1<span class="tag">$2</span>$3`)
-                .replace(/(\w+)=(["'])(.*?)\2/g, `<span class="attribute">$1</span>=<span class="value">$2$3$2</span>`);
-            editor.innerHTML = highlighted;
+    }
+
+    function calculateUnitAmount() {
+
+        const units = document.getElementById('units').value;
+
+        const unitPrice = document.getElementById('item').value;
+
+        const baseAmount = units * unitPrice;
+
+        const extraAmount = baseAmount * 0.35; // 35% extra
+
+        const totalAmount = baseAmount + extraAmount;
+
+        addToTable('Unit Price', `Units: ${units}, Item Price: Rs ${unitPrice}`, totalAmount.toFixed(2));
+
+    }
+
+    function calculateKgPrice() {
+
+        const item = document.getElementById("kgItem").value;
+
+        const kg = parseFloat(document.getElementById("kg").value);
+
+        let pricePerKg = 0;
+
+        switch (item) {
+
+            case "hitex": pricePerKg = 600; break;
+
+            case "screw": pricePerKg = 100; break;
+
+            case "khille": pricePerKg = 200; break;
+
+            case "aluminumBottom": pricePerKg = 300; break;
+
+            case "fevicol": pricePerKg = 350; break;
+
         }
-    </script>
+
+        if (isNaN(kg) || kg <= 0) {
+
+            alert("Please enter a valid kilogram value.");
+
+        } else {
+
+            const totalPrice = pricePerKg * kg;
+
+            const extraAmount = totalPrice * 0.35; // Calculate 35% extra
+
+            const finalAmount = totalPrice + extraAmount; // Add extra to total price
+
+            addToTable('KG Price', `KG: ${kg}, Item: ${item}`, finalAmount.toFixed(2));
+
+        }
+
+    }
+
+    function addToTable(type, details, totalAmount) {
+
+        const tableBody = document.getElementById('tableBody');
+
+        const newRow = `<tr>
+
+            <td>${type}</td>
+
+            <td>${details}</td>
+
+            <td>Rs. ${totalAmount}</td>
+
+        </tr>`;
+
+        tableBody.innerHTML += newRow;
+
+        // Update grand total
+
+        grandTotal += parseFloat(totalAmount);
+
+        document.getElementById('grandTotal').innerText = `Grand Total: Rs. ${grandTotal.toFixed(2)}`;
+
+        document.getElementById('toggleMore').style.display = 'block'; // Show the results section
+
+    }
+
+    function printTable() {
+
+        const printContent = document.getElementById('toggleMore').outerHTML;
+
+        const newWindow = window.open("", "", "width=800,height=600");
+
+        newWindow.document.write('<html><head><title>Print Data</title>');
+
+        newWindow.document.write('<style>table { width: 100%; border-collapse: collapse;} table, th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }</style></head><body>');
+
+        newWindow.document.write(printContent);
+
+        newWindow.document.write('</body></html>');
+
+        newWindow.document.close();
+
+        newWindow.print();
+
+    }
+
+    function clearTable() {
+
+        document.getElementById('tableBody').innerHTML = ''; // Clear the table body
+
+        grandTotal = 0; // Reset grand total
+
+        document.getElementById('grandTotal').innerText = 'Grand Total: Rs. 0.00'; // Reset grand total display
+
+        document.getElementById('toggleMore').style.display = 'none'; // Hide results section
+
+        document.getElementById('sheetSquareFeet').value = ''; // Clear input fields
+
+        document.getElementById('units').value = '';
+
+        document.getElementById('kg').value = '';
+
+    }
+
+</script>
 
 </body>
-</html>
+
+</html> 
