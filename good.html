@@ -8,81 +8,101 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Colorful Name Presentation</title>
+    <title>Kids Reading App</title>
 
     <style>
 
         body {
 
-            margin: 0;
-
-            height: 100vh;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            background-color: #000;
-
-            overflow: hidden;
-
-            font-family: 'Arial', sans-serif;
-
-        }
-
-        .name-container {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
 
             text-align: center;
 
-            font-size: 50px;
+            background-color: #f0f8ff;
 
-            font-weight: bold;
+            color: #333;
 
-            color: white;
+            margin: 0;
 
-            opacity: 0;
-
-            animation: fadeIn 3s forwards;
+            padding: 20px;
 
         }
 
-        /* Fade-in animation */
+        h1 {
 
-        @keyframes fadeIn {
+            color: #ff6347;
 
-            from {
+            font-size: 3em;
 
-                opacity: 0;
-
-                transform: translateY(20px);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform: translateY(0);
-
-            }
+            margin-bottom: 20px;
 
         }
 
-        /* Background color animation */
+        h2 {
 
-        @keyframes backgroundChange {
+            color: #4682b4;
 
-            0% { background-color: #ff6b6b; }
+            margin-top: 30px;
 
-            25% { background-color: #feca57; }
+            font-size: 2.5em;
 
-            50% { background-color: #1dd1a1; }
+        }
 
-            75% { background-color: #5f27cd; }
+        .section {
 
-            100% { background-color: #ff6b6b; }
+            margin: 20px 0;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background-color: rgba(173, 216, 230, 0.8);
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+        }
+
+        button {
+
+            padding: 15px 20px;
+
+            margin: 10px;
+
+            font-size: 1.5em;
+
+            background-color: #ffdd57;
+
+            border: none;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s, transform 0.3s;
+
+        }
+
+        button:hover {
+
+            background-color: #ffcc00;
+
+            transform: scale(1.05);
+
+        }
+
+        button:active {
+
+            transform: scale(0.95);
+
+        }
+
+        .rainbow {
+
+            background: linear-gradient(to right, #ff5e62, #ff9966);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
 
         }
 
@@ -92,29 +112,179 @@
 
 <body>
 
-    <div class="name-container" id="name">Mr.MUSADDIQ</div>
+    <h1 class="rainbow">Kids Reading App</h1>
+
+    <!-- Uppercase Letters -->
+
+    <div class="section">
+
+        <h2>Uppercase Letters</h2>
+
+        <div id="uppercaseLetters"></div>
+
+    </div>
+
+    <!-- Lowercase Letters -->
+
+    <div class="section">
+
+        <h2>Lowercase Letters</h2>
+
+        <div id="lowercaseLetters"></div>
+
+    </div>
+
+    <!-- Hindi Alphabet (Devanagari Script) -->
+
+    <div class="section">
+
+        <h2>Hindi Alphabet (स्वर और व्यंजन)</h2>
+
+        <h3>Vowels (स्वर)</h3>
+
+        <div id="hindiVowels"></div>
+
+        <h3>Consonants (व्यंजन)</h3>
+
+        <div id="hindiConsonants"></div>
+
+    </div>
+
+    <!-- Urdu Alphabet -->
+
+    <div class="section">
+
+        <h2>Urdu Alphabet (حروفِ صدادار اور حروفِ صحیح)</h2>
+
+        <h3>Vowels (حروفِ صدادار)</h3>
+
+        <div id="urduVowels"></div>
+
+        <h3>Consonants (حروفِ صحیح)</h3>
+
+        <div id="urduConsonants"></div>
+
+    </div>
+
+    <!-- Basic Words -->
+
+    <div class="section">
+
+        <h2>Basic Words</h2>
+
+        <div id="basicWords"></div>
+
+    </div>
+
+    <!-- JavaScript to dynamically generate buttons and add sound -->
 
     <script>
 
-        // Set the background to change colors over time
+        // Arrays for different alphabets and scripts
 
-        document.body.style.animation = "backgroundChange 10s infinite";
+        const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-        // JavaScript to make the name more dynamic (optional)
+        const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-        const nameElement = document.getElementById('name');
+        const hindiVowels = ['अ', 'आ', 'इ', 'ई', 'उ', 'ऊ', 'ऋ', 'ए', 'ऐ', 'ओ', 'औ', 'अं', 'अः'];
 
-        let colors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F', '#9B59B6'];
+        const hindiConsonants = ['क', 'ख', 'ग', 'घ', 'ङ', 'च', 'छ', 'ज', 'झ', 'ञ', 'ट', 'ठ', 'ड', 'ढ', 'ण', 'त', 'थ', 'द', 'ध', 'न', 'प', 'फ', 'ब', 'भ', 'म', 'य', 'र', 'ल', 'व', 'श', 'ष', 'स', 'ह', 'क्ष', 'त्र', 'ज्ञ'];
 
-        function changeTextColor() {
+        const urduVowels = ['ا', 'آ', 'و', 'ی'];
 
-            let randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const urduConsonants = ['ا', 'ب', 'پ', 'ت', 'ٹ', 'ث', 'ج', 'چ', 'ح', 'خ', 'د', 'ڈ', 'ذ', 'ر', 'ڑ', 'ز', 'ژ', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ک', 'گ', 'ل', 'م', 'ن', 'ں', 'و', 'ہ', 'ء', 'ی', 'ے'];
 
-            nameElement.style.color = randomColor;
+        
+
+        // Basic Words Array
+
+        const basicWords = [
+
+            "I", "you", "he", "she", "it", "we", "they", "me", "him", "her",
+
+            "us", "them", "my", "your", "his", "her", "its", "our", "their",
+
+            "who", "what", "when", "where", "why", "how", "this", "that",
+
+            "these", "those", "each", "every", "some", "any", "none", "all",
+
+            "one", "two", "three", "and", "but", "or", "so", "for", "nor",
+
+            "yet", "if", "because", "although", "while", "since", "unless",
+
+            "until", "after", "before", "during", "about", "against", "among",
+
+            "between", "with", "without", "above", "below", "over", "under",
+
+            "to", "from", "at", "in", "out", "on", "off", "by", "through",
+
+            "during", "into", "like", "as", "such", "too", "very", "just",
+
+            "only", "also", "still", "even", "yet", "always", "never",
+
+            "sometimes", "often", "usually", "rather", "quite", "so",
+
+            "all", "both", "either", "neither", "much"
+
+        ];
+
+        // Function to create buttons dynamically
+
+        function createButtons(array, containerId) {
+
+            const container = document.getElementById(containerId);
+
+            array.forEach(letter => {
+
+                let btn = document.createElement('button');
+
+                btn.textContent = letter;
+
+                btn.onclick = () => speak(letter);
+
+                container.appendChild(btn);
+
+            });
 
         }
 
-        setInterval(changeTextColor, 1000); // Change text color every second
+        // Function to use SpeechSynthesis API to speak the text
+
+        function speak(text) {
+
+            const utterance = new SpeechSynthesisUtterance(text);
+
+            window.speechSynthesis.speak(utterance);
+
+        }
+
+        // Create buttons for Uppercase Letters
+
+        createButtons(uppercaseLetters, 'uppercaseLetters');
+
+        // Create buttons for Lowercase Letters
+
+        createButtons(lowercaseLetters, 'lowercaseLetters');
+
+        // Create buttons for Hindi Vowels
+
+        createButtons(hindiVowels, 'hindiVowels');
+
+        // Create buttons for Hindi Consonants
+
+        createButtons(hindiConsonants, 'hindiConsonants');
+
+        // Create buttons for Urdu Vowels
+
+        createButtons(urduVowels, 'urduVowels');
+
+        // Create buttons for Urdu Consonants
+
+        createButtons(urduConsonants, 'urduConsonants');
+
+        // Create buttons for Basic Words
+
+        createButtons(basicWords, 'basicWords');
 
     </script>
 
