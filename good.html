@@ -176,6 +176,26 @@
 
     </div>
 
+    <!-- Numbers -->
+
+    <div class="section">
+
+        <h2>Numbers (1 to 100)</h2>
+
+        <div id="numbers"></div>
+
+    </div>
+
+    <!-- Number Words -->
+
+    <div class="section">
+
+        <h2>Number Words (One to One Hundred)</h2>
+
+        <div id="numberWords"></div>
+
+    </div>
+
     <!-- JavaScript to dynamically generate buttons and add sound -->
 
     <script>
@@ -228,63 +248,85 @@
 
         ];
 
-        // Function to create buttons dynamically
+        // Numbers Array (1 to 100)
 
-        function createButtons(array, containerId) {
+        const numbers = Array.from({ length: 100 }, (_, i) => i + 1);
+
+        
+
+        // Number Words Array (One to One Hundred)
+
+        const numberWords = [
+
+            "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+
+            "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty",
+
+            "Twenty-One", "Twenty-Two", "Twenty-Three", "Twenty-Four", "Twenty-Five", "Twenty-Six", "Twenty-Seven", "Twenty-Eight", "Twenty-Nine", "Thirty",
+
+            "Thirty-One", "Thirty-Two", "Thirty-Three", "Thirty-Four", "Thirty-Five", "Thirty-Six", "Thirty-Seven", "Thirty-Eight", "Thirty-Nine", "Forty",
+
+            "Forty-One", "Forty-Two", "Forty-Three", "Forty-Four", "Forty-Five", "Forty-Six", "Forty-Seven", "Forty-Eight", "Forty-Nine", "Fifty",
+
+            "Fifty-One", "Fifty-Two", "Fifty-Three", "Fifty-Four", "Fifty-Five", "Fifty-Six", "Fifty-Seven", "Fifty-Eight", "Fifty-Nine", "Sixty",
+
+            "Sixty-One", "Sixty-Two", "Sixty-Three", "Sixty-Four", "Sixty-Five", "Sixty-Six", "Sixty-Seven", "Sixty-Eight", "Sixty-Nine", "Seventy",
+
+            "Seventy-One", "Seventy-Two", "Seventy-Three", "Seventy-Four", "Seventy-Five", "Seventy-Six", "Seventy-Seven", "Seventy-Eight", "Seventy-Nine", "Eighty",
+
+            "Eighty-One", "Eighty-Two", "Eighty-Three", "Eighty-Four", "Eighty-Five", "Eighty-Six", "Eighty-Seven","Eighty-Eight", "Eighty-Nine", "Ninety", 
+
+            "Ninety-One", "Ninety-Two", "Ninety-Three", "Ninety-Four", "Ninety-Five", 
+
+            "Ninety-Six", "Ninety-Seven", "Ninety-Eight", "Ninety-Nine", "One Hundred"
+
+        ];
+
+        // Function to generate buttons for a given array
+
+        function generateButtons(array, containerId) {
 
             const container = document.getElementById(containerId);
 
-            array.forEach(letter => {
+            array.forEach(item => {
 
-                let btn = document.createElement('button');
+                const button = document.createElement('button');
 
-                btn.textContent = letter;
+                button.innerText = item;
 
-                btn.onclick = () => speak(letter);
+                button.onclick = () => {
 
-                container.appendChild(btn);
+                    const utterance = new SpeechSynthesisUtterance(item);
+
+                    speechSynthesis.speak(utterance);
+
+                };
+
+                container.appendChild(button);
 
             });
 
         }
 
-        // Function to use SpeechSynthesis API to speak the text
+        // Generate buttons for all sections
 
-        function speak(text) {
+        generateButtons(uppercaseLetters, 'uppercaseLetters');
 
-            const utterance = new SpeechSynthesisUtterance(text);
+        generateButtons(lowercaseLetters, 'lowercaseLetters');
 
-            window.speechSynthesis.speak(utterance);
+        generateButtons(hindiVowels, 'hindiVowels');
 
-        }
+        generateButtons(hindiConsonants, 'hindiConsonants');
 
-        // Create buttons for Uppercase Letters
+        generateButtons(urduVowels, 'urduVowels');
 
-        createButtons(uppercaseLetters, 'uppercaseLetters');
+        generateButtons(urduConsonants, 'urduConsonants');
 
-        // Create buttons for Lowercase Letters
+        generateButtons(basicWords, 'basicWords');
 
-        createButtons(lowercaseLetters, 'lowercaseLetters');
+        generateButtons(numbers, 'numbers');
 
-        // Create buttons for Hindi Vowels
-
-        createButtons(hindiVowels, 'hindiVowels');
-
-        // Create buttons for Hindi Consonants
-
-        createButtons(hindiConsonants, 'hindiConsonants');
-
-        // Create buttons for Urdu Vowels
-
-        createButtons(urduVowels, 'urduVowels');
-
-        // Create buttons for Urdu Consonants
-
-        createButtons(urduConsonants, 'urduConsonants');
-
-        // Create buttons for Basic Words
-
-        createButtons(basicWords, 'basicWords');
+        generateButtons(numberWords, 'numberWords');
 
     </script>
 
