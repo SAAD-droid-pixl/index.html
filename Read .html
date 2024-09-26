@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interactive Reading App</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(to right, #e0f7fa, #ffe082);
+
+            color: #333;
+
+            text-align: center;
+
+            padding: 20px;
+
+            animation: fadeIn 1s;
+
+        }
+
+        @keyframes fadeIn {
+
+            from {
+
+                opacity: 0;
+
+            }
+
+            to {
+
+                opacity: 1;
+
+            }
+
+        }
+
+        h1 {
+
+            font-size: 2.5em;
+
+            color: #ff5722;
+
+            margin-bottom: 20px;
+
+        }
+
+        .sentence {
+
+            background-color: #ffeb3b;
+
+            border: 2px solid #fbc02d;
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            margin: 10px;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s, transform 0.3s;
+
+            font-size: 1.5em;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .sentence:hover {
+
+            background-color: #ffe082;
+
+            transform: scale(1.05);
+
+        }
+
+        .sentence:nth-child(odd) {
+
+            background-color: #81d4fa;
+
+        }
+
+        .sentence:nth-child(odd):hover {
+
+            background-color: #4fc3f7;
+
+        }
+
+        .sentence:nth-child(even) {
+
+            background-color: #fff59d;
+
+        }
+
+        .sentence:nth-child(even):hover {
+
+            background-color: #fdd835;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Touch the Sentence to Read</h1>
+
+<div class="sentence" onclick="readSentence('I am going.  मैं जा रहा हूँ।')">I am going. - मैं जा रहा हूँ।</div>
+
+<div class="sentence" onclick="readSentence('What are you doing?  तुम क्या कर रहे हो?')">What are you doing? – तुम क्या कर रहे हो?</div>
+
+<div class="sentence" onclick="readSentence('She is cooking.  वह खाना बना रही है।')">She is cooking. – वह खाना बना रही है।</div>
+
+<div class="sentence" onclick="readSentence('They are playing.  वे खेल रहे हैं।')">They are playing. – वे खेल रहे हैं।</div>
+
+<div class="sentence" onclick="readSentence('He is sleeping.  वह सो रहा है।')">He is sleeping. – वह सो रहा है।</div>
+
+<div class="sentence" onclick="readSentence('I will call you.  मैं तुम्हें फोन करूंगा।')">I will call you. – मैं तुम्हें फोन करूंगा।</div>
+
+<div class="sentence" onclick="readSentence('Where is my book?  मेरी किताब कहाँ है?')">Where is my book? – मेरी किताब कहाँ है?</div>
+
+<div class="sentence" onclick="readSentence('We are eating.  हम खा रहे हैं।')">We are eating. – हम खा रहे हैं।</div>
+
+<div class="sentence" onclick="readSentence('The sun is shining.  सूरज चमक रहा है।')">The sun is shining. – सूरज चमक रहा है।</div>
+
+<div class="sentence" onclick="readSentence('The children are studying.  बच्चे पढ़ रहे हैं।')">The children are studying. – बच्चे पढ़ रहे हैं।</div>
+
+<div class="sentence" onclick="readSentence('Can you help me?  क्या तुम मेरी मदद कर सकते हो?')">Can you help me? – क्या तुम मेरी मदद कर सकते हो?</div>
+
+<div class="sentence" onclick="readSentence('I am feeling happy.  मैं खुश महसूस कर रहा हूँ।')">I am feeling happy. – मैं खुश महसूस कर रहा हूँ।</div>
+
+<div class="sentence" onclick="readSentence('She is reading a book.  वह एक किताब पढ़ रही है।')">She is reading a book. – वह एक किताब पढ़ रही है।</div>
+
+<div class="sentence" onclick="readSentence('We will go tomorrow.  हम कल जाएंगे।')">We will go tomorrow. – हम कल जाएंगे।</div>
+
+<div class="sentence" onclick="readSentence('He is driving the car.  वह कार चला रहा है।')">He is driving the car. – वह कार चला रहा है।</div>
+
+<div class="sentence" onclick="readSentence('Please close the door.  कृपया दरवाजा बंद कर दो।')">Please close the door. – कृपया दरवाजा बंद कर दो।</div>
+
+<div class="sentence" onclick="readSentence('What time is it?  कितने बजे हैं?')">What time is it? – कितने बजे हैं?</div>
+
+<div class="sentence" onclick="readSentence('I have finished my work.  मैंने अपना काम खत्म कर लिया है।')">I have finished my work. – मैंने अपना काम खत्म कर लिया है।</div>
+
+<div class="sentence" onclick="readSentence('The train is late.  ट्रेन लेट है।')">The train is late. – ट्रेन लेट है।</div>
+
+<div class="sentence" onclick="readSentence('He is a good boy.  वह एक अच्छा लड़का है।')">He is a good boy. – वह एक अच्छा लड़का है।</div>
+
+<div class="sentence" onclick="readSentence('Where do you live?  तुम कहाँ रहते हो?')">Where do you live? – तुम कहाँ रहते हो?</div>
+
+<div class="sentence" onclick="readSentence('She is very beautiful.  वह बहुत खूबसूरत है।')">She is very beautiful. – वह बहुत खूबसूरत है।</div>
+
+<div class="sentence" onclick="readSentence('I am learning Hindi.  मैं हिंदी सीख रहा हूँ।')">I am learning Hindi. – मैं हिंदी सीख रहा हूँ।</div>
+
+<div class="sentence" onclick="readSentence('Are you coming with me?  क्या तुम मेरे साथ आ रहे हो?')">Are you coming with me? – क्या तुम मेरे साथ आ रहे हो?</div>
+
+<div class="sentence" onclick="readSentence('The weather is nice today.  आज मौसम अच्छा है।')">The weather is nice today. – आज मौसम अच्छा है।</div>
+
+<div class="sentence" onclick="readSentence('What is your name?  तुम्हारा नाम क्या है?')">What is your name? – तुम्हारा नाम क्या है?</div>
+
+<div class="sentence" onclick="readSentence('I need some water.  मुझे थोड़ा पानी चाहिए।')">I need some water. – मुझे थोड़ा पानी चाहिए।</div>
+
+<div class="sentence" onclick="readSentence('Can you speak slowly?  क्या तुम धीरे बोल सकते हो?')">Can you speak slowly? – क्या तुम धीरे बोल सकते हो?</div>
+
+<div class="sentence" onclick="readSentence('The room is clean.  कमरा साफ है।')">The room is clean. – कमरा साफ है।</div>
+
+<div class="sentence" onclick="readSentence('He likes to play football.  उसे फुटबॉल खेलना पसंद है।')">He likes to play football. – उसे फुटबॉल खेलना पसंद है।</div>
+
+<div class="sentence" onclick="readSentence('I am studying now.  मैं अभी पढ़ाई कर रहा हूँ।')">I am studying now. – मैं अभी पढ़ाई कर रहा हूँ।</div>
+
+<div class="sentence" onclick="readSentence('She is singing a song.  वह एक गाना गा रही है।')">She is singing a song. – वह एक गाना गा रही है।</div>
+
+<div class="sentence" onclick="readSentence('We are going to the market.  हम बाजार जा रहे हैं।')">We are going to the market. – हम बाजार जा रहे हैं।</div>
+
+<div class="sentence" onclick="readSentence('This is my car.  यह मेरी कार है।')">This is my car. – यह मेरी कार है।</div>
+
+<div class="sentence" onclick="readSentence('How much is this?  यह कितना है?')">How much is this? – यह कितना है?</div>
+
+<div class="sentence" onclick="readSentence('I don’t understand.  मैं समझा नहीं।')">I don’t understand. – मैं समझा नहीं।</div>
+
+<div class="sentence" onclick="readSentence('Can you repeat that?  क्या आप इसे दोहरा सकते हैं?')">Can you repeat that? – क्या आप इसे दोहरा सकते हैं?</div>
+
+<div class="sentence" onclick="readSentence('I have a dog. – मेरे पास एक कुत्ता है।')">I have a dog.  मेरे पास एक कुत्ता है।</div>
+
+<div class="sentence" onclick="readSentence('I am tired.  मैं थका हुआ हूँ।')">I am tired. – मैं थका हुआ हूँ।</div>
+
+<div class="sentence" onclick="readSentence('Where are you going?  तुम कहाँ जा रहे हो?')">Where are you going? – तुम कहाँ जा रहे हो?</div>
+
+<div class="sentence" onclick="readSentence('What do you want to eat?  तुम क्या खाना चाहते हो?')">What do you want to eat? – तुम क्या खाना चाहते हो?</div>
+
+<div class="sentence" onclick="readSentence('I love to read.  मुझे पढ़ना पसंद है।')">I love to read. – मुझे पढ़ना पसंद है।</div>
+
+<div class="sentence" onclick="readSentence('It is raining.  बारिश हो रही है।')">It is raining. – बारिश हो रही है।</div>
+
+<div class="sentence" onclick="readSentence('I want to go home.  मैं घर जाना चाहता हूँ।')">I want to go home. – मैं घर जाना चाहता हूँ।</div>
+
+<div class="sentence" onclick="readSentence('The flowers are beautiful.  फूल खूबसूरत हैं।')">The flowers are beautiful. – फूल खूबसूरत हैं।</div>
+
+<div class="sentence" onclick="readSentence('Can you hear me?  क्या तुम मुझे सुन सकते हो?')">Can you hear me? – क्या तुम मुझे सुन सकते हो?</div>
+
+<div class="sentence" onclick="readSentence('The sky is clear.  आसमान साफ है।')">The sky is clear. – आसमान साफ है।</div>
+
+<div class="sentence" onclick="readSentence('I need to study.  मुझे पढ़ाई करनी है।')">I need to study. – मुझे पढ़ाई करनी है।</div>
+
+<div class="sentence" onclick="readSentence('I am going to school.  मैं स्कूल जा रहा हूँ।')">I am going to school. – मैं स्कूल जा रहा हूँ।</div>
+
+<div class="sentence" onclick="readSentence('We are happy.  हम खुश हैं।')">We are happy. – हम खुश हैं।</div>
+
+<div class="sentence" onclick="readSentence('This is my favorite toy.  यह मेरा पसंदीदा खिलौना है।')">This is my favorite toy. – यह मेरा पसंदीदा खिलौना है।</div>
+
+<div class="sentence" onclick="readSentence('I can ride a bicycle.  मैं साइकिल चला सकता हूँ।')">I can ride a bicycle. – मैं साइकिल चला सकता हूँ।</div>
+
+<div class="sentence" onclick="readSentence('Are you ready?  क्या तुम तैयार हो?')">Are you ready? – क्या तुम तैयार हो?</div>
+
+<div class="sentence" onclick="readSentence('I like ice cream.  मुझे आइसक्रीम पसंद है।')">I like ice cream. – मुझे आइसक्रीम पसंद है।</div>
+
+<div class="sentence" onclick="readSentence('The cat is sleeping.  बिल्ली सो रही है।')">The cat is sleeping. – बिल्ली सो रही है।</div>
+
+<div class="sentence" onclick="readSentence('I enjoy playing games.  मुझे खेलना पसंद है।')">I enjoy playing games. – मुझे खेलना पसंद है।</div>
+
+<div class="sentence" onclick="readSentence('What is your favorite color?  तुम्हारा पसंदीदा रंग कौन सा है?')">What is your favorite color? – तुम्हारा पसंदीदा रंग कौन सा है?</div>
+
+<div class="sentence" onclick="readSentence('Let’s go for a walk.  चलो टहलने चलते हैं।')">Let’s go for a walk. – चलो टहलने चलते हैं।</div>
+
+<div class="sentence" onclick="readSentence('Do you like reading?  क्या तुम पढ़ना पसंद करते हो?')">Do you like reading? – क्या तुम पढ़ना पसंद करते हो?</div>
+
+<div class="sentence" onclick="readSentence('I am excited.  मैं उत्साहित हूँ।')">I am excited. – मैं उत्साहित हूँ।</div>
+
+<div class="sentence" onclick="readSentence('The stars are shining.  तारे चमक रहे हैं।')">The stars are shining. – तारे चमक रहे हैं।</div>
+
+<script>
+
+    function readSentence(sentence) {
+
+        const utterance = new SpeechSynthesisUtterance(sentence);
+
+        utterance.lang = 'en-IN'; // Change this to 'hi-IN' for Hindi if needed
+
+        window.speechSynthesis.speak(utterance);
+
+    }
+
+</script>
+
+</body>
+
+</html>
